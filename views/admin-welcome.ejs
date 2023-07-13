@@ -1,0 +1,28 @@
+<head>
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn {
+      /* color: blue; */
+      border: 0;
+      cursor: pointer;
+    }
+  </style>
+  <title>Admin page</title>
+</head>
+<div class="container">
+  <a href="/">Home</a>
+  <a href="/welcome/admin/item-list">Items</a>
+  <a href="/welcome/admin/add-item">Add items</a>
+  <a href="/welcome/admin/users">View users</a>
+  <div class="btn">
+    <a href="/logout">Log out</a>
+  </div>
+</div>
+<h2 style="color:red">Welcome Admin</h2>
+<h3>
+  <%= email %>
+</h3>

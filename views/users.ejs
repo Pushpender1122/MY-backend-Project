@@ -1,0 +1,128 @@
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+
+    }
+
+    button {
+      background: white;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .navbar {
+      font-size: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .newName {
+      /* border: 0; */
+      /* background-color: yellow; */
+      border: 1px solid blue;
+    }
+
+    .bg-red {
+      background-color: red;
+    }
+  </style>
+  <title>Users-list</title>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <a href="/welcome/admin">Home</a>
+    <a href="/welcome/admin/item-list">Item list </a>
+  </div>
+
+  <h2>Items are</h2>
+  <h3>Current session show on icon red color</h3>
+  <table>
+    <tr>
+      <th>SessionId</th>
+      <th>Email</th>
+      <th>TimeStamp</th>
+      <th>Options</th>
+      <th>Options</th>
+    </tr>
+    <% var count=1 %>
+    <% var id_find%>
+    <!-- here we declare a variable count  -->
+    <% data.forEach(function(item) { %>
+    <tr>
+      <td class="t<%=count%>" <% if(session_id == item.session_id) { %>style="background-color: #5c9cc3; " <% id_find=count; } %>><%= item.session_id%></td>
+      <td class="t<%=count%>"><%= item.email %></td>
+      <td class="t<%=count%>"><%= item.timestamp %></td>
+      <td><Button class="t<%=count%>" type="submit" onclick="logout_one(<%=count%>)">Log_out</Button></td>
+      <td><Button class="edit<%=count%>" type="submit" onclick="logout_all(<%=count%>,<%=id_find%>)">Log_out From All device</Button></td>
+    </tr>
+    <%count++ %>
+    <% }); %>
+
+  </table>
+  <div id="id"></div>
+  <script>
+    const id = document.getElementById('id');
+    const adminEmail = 'pushpenderjangra2005@gmail.com';
+
+    function logout_one(count) {
+      const session_id = document.querySelector(`.t${count}`);
+      console.log(session_id.textContent);
+      const data = session_id.textContent;
+      fetch('/welcome/admin/users', {
+          method: 'DELETE',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            data
+          }),
+        }).then(response => response.json())
+        .then(result => {
+          id.innerHTML = result.msg
+          // console.log(result.msg);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+
+    function logout_all(count, id_number) {
+      const session_email = document.querySelectorAll(`.t${count}`);
+      const data = session_email[1].textContent;
+      console.log(data.toLowerCase() == adminEmail);
+      fetch('/welcome/admin/usersAll', {
+          method: 'DELETE',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            data
+          }),
+        }).then(response => response.json())
+        .then(result => {
+          id.innerHTML = result.msg
+          console.log(result.msg);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
+</body>

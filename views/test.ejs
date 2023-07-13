@@ -1,0 +1,29 @@
+<h1>Fruit Categories</h1>
+<ul id="fruitList"></ul>
+
+<script>
+    fetch('/fruits')
+        .then(response => response.json())
+        .then(data => {
+            const fruitList = document.getElementById('fruitList');
+
+            data.forEach(fruit => {
+                const listItem = document.createElement('li');
+                const heading = document.createElement('h3');
+                const price = document.createElement('p');
+                const image = document.createElement('img');
+
+                heading.textContent = fruit.name;
+                price.textContent = 'Price: ' + fruit.price;
+                image.src = '/uploads/' + fruit.image;
+                image.alt = fruit.name;
+
+                listItem.appendChild(heading);
+                listItem.appendChild(price);
+                listItem.appendChild(image);
+
+                fruitList.appendChild(listItem);
+            });
+        })
+        .catch(error => console.error('Error fetching fruits:', error));
+</script>

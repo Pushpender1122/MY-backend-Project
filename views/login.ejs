@@ -1,0 +1,18 @@
+<%- include('partials/head') %>
+    <%- include('partials/navbar') %>
+        <form class="box" method="post" action="/login">
+            <div class="inputBox">
+                Email <input type="email" name="email" value="<%= email %>" required>
+                <label>
+                    <%= Email %>
+                </label>
+            </div>
+            <div class="inputBox">
+                Password <input type="password" name="password" value="" required>
+                <label>
+                    <%= Password %>
+                </label>
+            </div>
+            <button type="submit" name="login" value="Login">Login</button>
+        </form>
+        <%- include('partials/footer') %>

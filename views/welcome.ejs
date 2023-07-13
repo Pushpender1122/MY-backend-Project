@@ -1,0 +1,26 @@
+<head>
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .btn {
+      /* color: blue; */
+      border: 0;
+      cursor: pointer;
+    }
+  </style>
+  <title>Welcome</title>
+</head>
+<div class="container">
+  <a href="/">Home</a>
+  <a href="/welcome/items">Show items</a>
+  <div class="btn">
+    <a href="/logout">Log out</a>
+  </div>
+</div>
+<h2 style="color:red">Welcome user </h2>
+<h3>
+  <%= email %>
+</h3>

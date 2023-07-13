@@ -1,0 +1,37 @@
+<head>
+
+  <style>
+    .navbar {
+      font-size: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+  </style>
+  <title>Add-items</title>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <a href="/welcome/admin/item-list">Item list </a>
+    <a href="/welcome/admin">Home</a>
+
+  </div>
+  <form action="/welcome/admin/add-item" method="post" enctype="multipart/form-data">
+    Enter item name :
+    <input type="text" name="item_name" required>
+    <br>
+    Enter item price :
+    <input type="number" name="item_price" required>
+    <br>
+    Upload Image
+    <input type="file" name="item_img">
+    <br>
+    <button>Add item</button>
+
+    <div class="error">
+      <span><%= err %></span>
+
+    </div>
+  </form>
+</body>

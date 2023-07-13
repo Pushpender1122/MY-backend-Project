@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    /* Navbar styles */
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-right a {
+      margin-left: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .item1,
+    .item2,
+    .item3,
+    .item4 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+      border: 2px solid black;
+      height: 200px;
+      width: 200px;
+      margin: 20px;
+    }
+
+    .image1 {
+      width: 200px;
+      height: 200px;
+      background-image: url('/apple/apple.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 2px solid black;
+
+    }
+
+    .name {
+      margin-top: 10px;
+    }
+
+    .price {
+      margin-top: 5px;
+    }
+  </style>
+  <title>Items</title>
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="navbar-left">
+      <a href="/">Home</a>
+    </div>
+    <div class="navbar-right">
+      <span>Cart</span> <!-- Replace with cart icon or custom design -->
+    </div>
+  </div>
+  <% var count=1 %>
+  <% data.forEach(element=> { %>
+  <div class="item<%=count%>">
+    <% for(const value in element){ %>
+    <div class="image<%=count%>"></div>
+    <h2 class="name<%=count%>">$<%=element[value]%></h2>
+
+    <% } %>
+    <% count++ %>
+  </div>
+  <% }); %>
+
+
+
+</body>
+
+</html>
