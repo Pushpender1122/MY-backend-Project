@@ -28,27 +28,24 @@
       text-decoration: none;
     }
 
-    .item1,
-    .item2,
-    .item3,
-    .item4 {
+    .item {
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 10px;
-      border: 2px solid black;
+      /* border: 2px solid black; */
       height: 200px;
       width: 200px;
       margin: 20px;
     }
 
-    .image1 {
+    .image {
       width: 200px;
       height: 200px;
-      background-image: url('/apple/apple.jpg');
+      /* background-image: url('/apple/apple.jpg'); */
       background-size: cover;
       background-position: center;
-      border: 2px solid black;
+      /* border: 2px solid black; */
 
     }
 
@@ -58,7 +55,11 @@
 
     .price {
       margin-top: 5px;
-      jhj
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
     }
   </style>
   <title>Items</title>
@@ -73,17 +74,20 @@
       <span>Cart</span> <!-- Replace with cart icon or custom design -->
     </div>
   </div>
-  <% var count=1 %>
-  <% data.forEach(element=> { %>
-  <div class="item<%=count%>">
-    <% for(const value in element){ %>
-    <div class="image<%=count%>"></div>
-    <h2 class="name<%=count%>">$<%=element[value]%></h2>
 
-    <% } %>
-    <% count++ %>
+  <div class="container">
+    <% data.forEach(element => { %>
+    <div class="item">
+      <div class="image" style="background-image: url('<%= element.item_image %>');"></div>
+      <div class="details">
+        <h2 class="name"><%= element.item_name %></h2>
+        <p class="price">$<%= element.item_price %></p>
+      </div>
+    </div>
+    <% }); %>
   </div>
-  <% }); %>
+
+
 
 
 
