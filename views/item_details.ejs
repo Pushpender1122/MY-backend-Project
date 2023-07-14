@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* Navbar styles */
+    .navbar {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-right a {
+      margin-left: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .content {
+      border: 2px solid black;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="navbar-left">
+      <a href="/">Home</a>
+    </div>
+    <div class="navbar-right">
+      <span>Cart</span> <!-- Replace with cart icon or custom design -->
+    </div>
+  </div>
+
+  <div class="container">
+    <h1 class="item-name"><%= item.name %></h1>
+    <p class="item-price">$<%= item.price %></p>
+    <p class="item-description"><%= item.description %></p>
+
+    <div class="item-images">
+      <% item.images.forEach(image => { %>
+      <div class="image" style="background-image: url('<%= image %>');"></div>
+      <% }); %>
+    </div>
+  </div>
+
+</body>
+
+</html>

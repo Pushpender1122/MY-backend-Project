@@ -33,6 +33,7 @@ routes.get("/logout", saferoutes, authcontroller.logout_get);
 // routes.post("/welcome", saferoutes, upload.single('U_file'), authcontroller.welcome_post);
 routes.get("/welcome", saferoutes, authcontroller.welcome_get);
 routes.get("/welcome/items", authcontroller.items_get);
+routes.get("/item-details", authcontroller.item_details);
 // routes.get("/fruits", authcontroller.fruits);
 
 // admin page

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
@@ -33,8 +34,8 @@
       flex-direction: column;
       align-items: center;
       padding: 10px;
-      border: 2px solid black;
-      height: 265px;
+      /* border: 2px solid black; */
+      height: 291px;
       width: 202px;
       margin: 40px;
     }
@@ -64,7 +65,10 @@
 
     }
   </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Items</title>
+
 </head>
 
 <body>
@@ -84,15 +88,17 @@
       <div class="details">
         <h2 class="name"><%= element.item_name %></h2>
         <p class="price">$<%= element.item_price %></p>
+        <a href="#" class="btn" onclick="viewItem('<%= element.item_id %>')">View Item</a>
       </div>
     </div>
     <% }); %>
   </div>
-
-
-
-
-
+  <script>
+    function viewItem(uuid) {
+      const url = '/item-details?uuid=' + uuid;
+      window.location.href = url;
+    }
+  </script>
 </body>
 
 </html>

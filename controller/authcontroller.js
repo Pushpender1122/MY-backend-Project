@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const { json } = require('body-parser');
 const session = require('express-session');
 const sss = require('../session/session_conf');
-
+const path = require('path');
 
 
 module.exports.login_get = (req, res) => {
@@ -103,7 +103,7 @@ module.exports.items_get = (req, res) => {
             console.log(err);
         }
         else {
-            console.log(data);
+            // console.log(data);
             res.render('view-items', { data });
         }
     })
@@ -157,6 +157,25 @@ module.exports.welcome_get = (req, res) => {
 
 //     // res.render('welcome');
 // }
+
+
+
+
+///I will do it later item details page
+module.exports.item_details = (req, res) => {
+    const itemId = req.query.uuid; // Assuming the UUID is passed as a query parameter
+
+    // Retrieve the item details from the database based on the itemId
+    // You need to implement the logic to fetch the item details from your database
+    const item = {
+        name: 'Example Item',
+        price: 9.99,
+        description: 'This is an example item description.',
+        images: ['/apple/apple.jpg', '/apple/images.jpg', 'image3.jpg']
+    };
+
+    res.render('item_details', { item });
+}
 //admin
 
 
@@ -166,9 +185,13 @@ module.exports.add_item_get = (req, res) => {
 module.exports.add_item_post = (req, res) => {
     const item_name = req.body.item_name;
     const item_price = req.body.item_price;
-    console.log(req.body)
-    console.log(req.file)
-    connection.query('insert into item_list (item_name,item_price) values(?,?)', [item_name, item_price], (err, data) => {
+    var item_image = path.join(`/` + req.body.item_name, req.file.filename);
+    // console.log(req.body)
+    // console.log(req.file)
+    item_image = item_image.replaceAll('\\', '/')
+    // console.log(item_image)
+
+    connection.query('insert into item_list (item_name,item_price,item_image) values(?,?,?)', [item_name, item_price, item_image], (err, data) => {
         if (err) {
             if (err.errno == 1062) {
 
@@ -178,6 +201,7 @@ module.exports.add_item_post = (req, res) => {
 
                 res.send('err');
             }
+            // console.log(err);
         }
         else {
 
